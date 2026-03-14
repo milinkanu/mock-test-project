@@ -103,6 +103,7 @@ export function RegisterPage() {
               >
                 <option value="">Select Exam Preference</option>
                 <option value="mhtcet">MHT CET</option>
+                <option value="mah-bba-bca-cet">MAH-BBA/BCA CET</option>
                 <option value="jee">JEE Main</option>
                 <option value="neet">NEET</option>
               </select>

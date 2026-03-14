@@ -12,10 +12,15 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center justify-center gap-2 mb-6"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-accent-foreground mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-accent-foreground">
               <BookOpen className="h-3.5 w-3.5" />
               MHTCET 2026 Mock Tests Available
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+              <BookOpen className="h-3.5 w-3.5" />
+              MAH-BBA/BCA CET Mock Tests Available
             </span>
           </motion.div>
 
@@ -44,14 +49,14 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Link to="/exams/mhtcet">
+            <Link to="/exams">
               <Button size="lg" className="gap-2 text-base px-8">
                 Start Mock Test <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/exams">
+            <Link to="/services">
               <Button size="lg" variant="outline" className="text-base px-8">
-                View Exams
+                View Counselling
               </Button>
             </Link>
           </motion.div>

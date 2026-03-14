@@ -78,8 +78,8 @@ export default function ResultsPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <div className="container py-12 max-w-4xl">
-        <Link to="/exams/mhtcet" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
-          <ArrowLeft className="h-4 w-4" /> Back to Tests
+        <Link to="/exams" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
+          <ArrowLeft className="h-4 w-4" /> Back to Exams
         </Link>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">

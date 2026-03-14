@@ -17,6 +17,7 @@ export interface SubjectConfig {
   totalQuestions: number;
   marksPerQuestion: number;
   papers: number;
+  duration?: number; // Optional custom duration in minutes
 }
 
 export interface FullLengthTestConfig {
@@ -30,6 +31,7 @@ export interface FullLengthTestConfig {
   totalQuestions: number;
   totalMarks: number;
   papers: number;
+  duration?: number; // Optional custom duration in minutes
 }
 
 export interface TestInfo {
@@ -82,6 +84,35 @@ export const examConfigs: ExamConfig[] = [
       },
     ],
   },
+  {
+    examId: 'mah-bba-bca-cet',
+    examName: 'MAH-BHMCT / BCA / BBA / BBM / BMS CET',
+    shortName: 'MAH-BBA / BCA CET',
+    description: 'Maharashtra Common Entrance Test for BHMCT, BCA, BBA, BBM, and BMS admissions',
+    icon: '📊',
+    subjects: [
+      { subjectId: 'english', subjectName: 'English Language', totalQuestions: 40, marksPerQuestion: 1, papers: 3, duration: 40 },
+      { subjectId: 'reasoning', subjectName: 'Reasoning (Verbal + Arithmetic)', totalQuestions: 30, marksPerQuestion: 1, papers: 3, duration: 40 },
+      { subjectId: 'gk', subjectName: 'General Knowledge & Awareness', totalQuestions: 15, marksPerQuestion: 1, papers: 3, duration: 20 },
+      { subjectId: 'computer', subjectName: 'Computer Basics', totalQuestions: 15, marksPerQuestion: 1, papers: 3, duration: 20 },
+    ],
+    fullLengthTests: [
+      {
+        testId: 'full',
+        testName: 'Full Length Mock Test',
+        subjects: [
+          { subjectName: 'English Language', questions: 40, marksPerQuestion: 1 },
+          { subjectName: 'Reasoning (Verbal + Arithmetic)', questions: 30, marksPerQuestion: 1 },
+          { subjectName: 'General Knowledge & Awareness', questions: 15, marksPerQuestion: 1 },
+          { subjectName: 'Computer Basics', questions: 15, marksPerQuestion: 1 },
+        ],
+        totalQuestions: 100,
+        totalMarks: 100,
+        papers: 3,
+        duration: 90, // 90 minutes per full test
+      },
+    ],
+  },
 ];
 
 export function getExamById(examId: string): ExamConfig | undefined {
@@ -103,7 +134,7 @@ export function getAllTests(examId: string): TestInfo[] {
         subject: subject.subjectName,
         totalQuestions: subject.totalQuestions,
         totalMarks: subject.totalQuestions * subject.marksPerQuestion,
-        duration: subject.totalQuestions <= 50 ? 60 : 90,
+        duration: subject.duration || (subject.totalQuestions <= 50 ? 60 : 90),
         type: 'subject',
       });
     }
@@ -118,7 +149,7 @@ export function getAllTests(examId: string): TestInfo[] {
         subject: flt.subjects.map(s => s.subjectName).join(', '),
         totalQuestions: flt.totalQuestions,
         totalMarks: flt.totalMarks,
-        duration: flt.totalQuestions <= 150 ? 180 : 210,
+        duration: flt.duration || (flt.totalQuestions <= 150 ? 180 : 210),
         type: 'full-length',
       });
     }

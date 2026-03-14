@@ -4,7 +4,7 @@ import { Clock, AlertTriangle, Send, ChevronLeft, ChevronRight, Flag, RotateCcw 
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { getQuestionsForTest, type Question } from '@/data/questions';
-import { getAllTests } from '@/data/exams';
+import { examConfigs, getAllTests } from '@/data/exams';
 
 type QuestionStatus = 'not-visited' | 'not-answered' | 'answered' | 'marked';
 
@@ -20,7 +20,8 @@ export default function TestInterfacePage() {
   const { testId } = useParams<{ testId: string }>();
   const navigate = useNavigate();
   const questions = getQuestionsForTest(testId || '');
-  const testInfo = getAllTests('mhtcet').find(t => t.testId === testId);
+  const allTests = examConfigs.flatMap(e => getAllTests(e.examId));
+  const testInfo = allTests.find(t => t.testId === testId);
 
   const [state, setState] = useState<TestState>(() => {
     // Try to resume from localStorage
